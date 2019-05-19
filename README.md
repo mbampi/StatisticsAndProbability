@@ -1,6 +1,6 @@
 # StatisticsAndProbability
 
-Some statistics and probabilty functions
+Some statistics and probability functions
 
 including:
 
