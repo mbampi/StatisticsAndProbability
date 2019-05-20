@@ -1,4 +1,4 @@
-# StatisticsAndProbability
+# Statistics and Probability
 
 Some statistics and probability functions
 
