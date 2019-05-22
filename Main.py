@@ -1,5 +1,5 @@
 import math
-
+import statistics
 
 # --------------------------------------------FUNCTIONS------------------------------------------------------ #
 
@@ -19,13 +19,28 @@ def hypergeometric_distribution(x: float, n: float, N: float, N1: float):
 
 while True:
     print("Statistics and Probability")
-    print("1- Combinacao \n 2- Distribuicao Hipergeometrica")
+    print(" 1- Media, Mediana, Moda, Desvio Padrao \n 4- Combinacao \n 5- Distribuicao Hipergeometrica")
     op = int(input("-> "))
 
     if op == 0:
         break
 
     elif op == 1:
+        print("Media")
+        s = input("Numeros [divididos por ',' (virgula)] = ")
+        numbers = s.split(',')
+
+        mean = statistics.mean(numbers)
+        mode = statistics.mode(numbers)
+        median = statistics.median(numbers)
+        std_deviation = statistics.stdev(numbers)
+
+        print("Media = " + mean)
+        print("Mediana = " + median)
+        print("Moda = " + mode)
+        print("Desvio Padrao= " + std_deviation)
+
+    elif op == 4:
         print("Combinacao")
         print("C(m,p) = m! / p!(m-p!)")
 
@@ -34,10 +49,9 @@ while True:
 
         result = combination(m, p)
         result = round(result, 4)
-
         print("C(" + str(m) + ", " + str(p) + ") = " + str(result))
 
-    elif op == 2:
+    elif op == 5:
         print("Distribuicao Hipergeometrica")
         print("P(x) = C(N1, x)*C(N2, n-x) / C(N, n)")
 
