@@ -8,5 +8,9 @@ including:
  - Median
  - Mode
  - Standard Deviation
+ 
  - Combination
+ 
+ - Binomial Distribution
+ - Poisson Distribution
  - Hypergeometric Distribution
