@@ -3,23 +3,33 @@ import statistics
 
 # --------------------------------------------FUNCTIONS------------------------------------------------------ #
 
+
 def combination(m: float, p: float):
-    result = math.factorial(m) / (math.factorial(p) * math.factorial(m-p))
-    return result
+    return math.factorial(m) / (math.factorial(p) * math.factorial(m-p))
+
+
+def binomial_distribution(x, n, p):
+    return combination(n, x) * pow(p, x) * pow(1 - p, n - x)
+
+
+def poisson_distribution(x, p):
+    return pow(math.e, -p) * pow(p, x) / math.factorial(x)
 
 
 def hypergeometric_distribution(x: float, n: float, N: float, N1: float):
-
     N2 = float(N - N1)
-    result = (combination(N1, x) * combination(N2, float(n - x))) / combination(N, n)
-    return result
+    return (combination(N1, x) * combination(N2, float(n - x))) / combination(N, n)
 
 
 # --------------------------------------------MAIN------------------------------------------------------ #
 
 while True:
     print("Statistics and Probability")
-    print(" 1- Media, Mediana, Moda, Desvio Padrao \n 4- Combinacao \n 5- Distribuicao Hipergeometrica")
+    print(" 1- Media, Mediana, Moda, Desvio Padrao \n "
+          "2- Combinacao \n "
+          "3- Distribuicao Binomial \n "
+          "4- Distribuicao Poisson \n "
+          "5- Distribuicao Hipergeometrica")
     op = int(input("-> "))
 
     if op == 0:
@@ -40,9 +50,8 @@ while True:
         print("Moda = " + mode)
         print("Desvio Padrao= " + std_deviation)
 
-    elif op == 4:
-        print("Combinacao")
-        print("C(m,p) = m! / p!(m-p!)")
+    elif op == 2:
+        print("Combinacao - C(m, p)")
 
         m = float(input("m= "))
         p = float(input("p= "))
@@ -51,9 +60,29 @@ while True:
         result = round(result, 4)
         print("C(" + str(m) + ", " + str(p) + ") = " + str(result))
 
+    elif op == 3:
+        print("Distribuicao Binomial")
+
+        n = float(input("n (numero de repeticoes do experimento de bernoulli) = "))
+        p = float(input("p (numero medio de sucessos) = "))
+        x = float(input("x (numero de sucessos) = "))
+
+        result = binomial_distribution(x, n, p)
+        result = round(result, 4)
+        print(" = " + str(result))
+
+    elif op == 4:
+        print("Distribuicao Poisson")
+
+        x = float(input("x (numero de sucessos) = "))
+        p = float(input("p (numero medio de sucessos) = "))
+
+        result = poisson_distribution(x, p)
+        result = round(result, 4)
+        print(" = " + str(result))
+
     elif op == 5:
         print("Distribuicao Hipergeometrica")
-        print("P(x) = C(N1, x)*C(N2, n-x) / C(N, n)")
 
         n = float(input("n (numero de repeticoes do experimento) = "))
         N = float(input("N (tamanho da populacao) = "))
