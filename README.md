@@ -10,6 +10,7 @@ including:
  - Standard Deviation
  
  - Combination
+ - Permutation
  
  - Binomial Distribution
  - Poisson Distribution
