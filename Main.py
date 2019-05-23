@@ -4,8 +4,12 @@ import statistics
 # --------------------------------------------FUNCTIONS------------------------------------------------------ #
 
 
-def combination(m: float, p: float):
-    return math.factorial(m) / (math.factorial(p) * math.factorial(m-p))
+def permutation(n, p):
+    return math.factorial(n) / math.factorial(n-p)
+
+
+def combination(n, p):
+    return math.factorial(n) / (math.factorial(p) * math.factorial(n-p))
 
 
 def binomial_distribution(x, n, p):
@@ -24,12 +28,14 @@ def hypergeometric_distribution(x: float, n: float, N: float, N1: float):
 # --------------------------------------------MAIN------------------------------------------------------ #
 
 while True:
-    print("Statistics and Probability")
-    print(" 1- Media, Mediana, Moda, Desvio Padrao \n "
+    print("--- Statistics and Probability ---")
+    print("1- Media, Mediana, Moda e Desvio Padrao \n "
           "2- Combinacao \n "
-          "3- Distribuicao Binomial \n "
-          "4- Distribuicao Poisson \n "
-          "5- Distribuicao Hipergeometrica")
+          "3- Permutacao \n "
+          "4- Distribuicao Binomial \n "
+          "5- Distribuicao Poisson \n "
+          "6- Distribuicao Hipergeometrica \n"
+          "0- Sair")
     op = int(input("-> "))
 
     if op == 0:
@@ -51,16 +57,26 @@ while True:
         print("Desvio Padrao= " + std_deviation)
 
     elif op == 2:
-        print("Combinacao - C(m, p)")
+        print("Combinacao - C(n, p)")
 
-        m = float(input("m= "))
-        p = float(input("p= "))
+        m = float(input("n (total) = "))
+        p = float(input("p (selecionados) = "))
 
-        result = combination(m, p)
+        result = combination(n, p)
         result = round(result, 4)
-        print("C(" + str(m) + ", " + str(p) + ") = " + str(result))
+        print("C(" + str(n) + ", " + str(p) + ") = " + str(result))
 
     elif op == 3:
+        print("Permutacao - P(n, p)")
+
+        m = float(input("n (total) = "))
+        p = float(input("p (selecionados) = "))
+
+        result = permutation(n, p)
+        result = round(result, 4)
+        print("P(" + str(n) + ", " + str(p) + ") = " + str(result))
+
+    elif op == 4:
         print("Distribuicao Binomial")
 
         n = float(input("n (numero de repeticoes do experimento de bernoulli) = "))
@@ -71,7 +87,7 @@ while True:
         result = round(result, 4)
         print(" = " + str(result))
 
-    elif op == 4:
+    elif op == 5:
         print("Distribuicao Poisson")
 
         x = float(input("x (numero de sucessos) = "))
@@ -81,7 +97,7 @@ while True:
         result = round(result, 4)
         print(" = " + str(result))
 
-    elif op == 5:
+    elif op == 6:
         print("Distribuicao Hipergeometrica")
 
         n = float(input("n (numero de repeticoes do experimento) = "))
