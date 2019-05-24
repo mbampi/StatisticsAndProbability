@@ -1,5 +1,6 @@
 import math
 import statistics
+import matplotlib.pyplot as plt
 
 # --------------------------------------------FUNCTIONS------------------------------------------------------ #
 
@@ -45,16 +46,25 @@ while True:
         print("Media")
         s = input("Numeros [divididos por ',' (virgula)] = ")
         numbers = s.split(',')
+        for index, item in enumerate(numbers):
+            numbers[index] = float(item)
 
         mean = statistics.mean(numbers)
         mode = statistics.mode(numbers)
         median = statistics.median(numbers)
         std_deviation = statistics.stdev(numbers)
 
-        print("Media = " + mean)
-        print("Mediana = " + median)
-        print("Moda = " + mode)
-        print("Desvio Padrao= " + std_deviation)
+        numbers.sort()
+        range = (numbers[0]-1, numbers[len(numbers)-1]+1)
+        plt.hist(numbers, color='blue', range=range, histtype='bar', rwidth=0.8)
+        plt.xlabel("Dados")
+        plt.ylabel("No. de ocorrencias")
+        plt.show()
+
+        print("Media = " + str(mean))
+        print("Mediana = " + str(median))
+        print("Moda = " + str(mode))
+        print("Desvio Padrao= " + str(std_deviation))
 
     elif op == 2:
         print("Combinacao - C(n, p)")
