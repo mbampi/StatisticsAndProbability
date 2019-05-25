@@ -2,16 +2,20 @@
 
 Some statistics and probability functions
 
-including:
+Included:
 
  - Mean
  - Median
  - Mode
  - Standard Deviation
  
- - Combination
  - Permutation
+ - Circular Permutation
+ - Combination
+
  
  - Binomial Distribution
  - Poisson Distribution
  - Hypergeometric Distribution
+ 
+ - Normal Distribution Area
