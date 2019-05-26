@@ -2,6 +2,7 @@
 import statistics
 import matplotlib.pyplot as plt
 import functions as ps
+import pandas as pd
 
 while True:
     print("\n --- Statistics and Probability --- \n")
@@ -12,8 +13,9 @@ while True:
           " 5- Distribuicao Binomial \n"
           " 6- Distribuicao Poisson \n"
           " 7- Distribuicao Hipergeometrica \n"
-          " 8- Padronizar (X -> Z) \n"
-          " 9- Normal Distribution Area \n"
+          " 8- Padronizar (x->z) \n"
+          " 9- Area da Distribuicao Normal (0,z) \n"
+          " 10- Distribuicao Amostral \n"
           " 0- Sair \n")
     op = int(input(" -> "))
 
@@ -21,7 +23,7 @@ while True:
         break
 
     elif op == 1:
-        print("Media")
+        print("Media, Mediana, Moda e Desvio Padrao")
         s = input("Numeros [divididos por ',' (virgula)] = ")
         numbers = s.split(',')
         for index, item in enumerate(numbers):
@@ -123,5 +125,22 @@ while True:
         area = round(ps.normal_distribution_area(z), 5)
         print("Area(0, z)=" + str(area))
 
+    elif op == 10:
+        print("\n Distribuicao Amostral")
+        x_raw = input("X [divididos por ',' (virgula)] = ")
+        p_raw = input("P [divididos por ',' (virgula)] = ")
+        x_list = x_raw.split(',')
+        p_list = p_raw.split(',')
+        for i, x in enumerate(x_list):
+            x_list[i] = float(x)
+            p_list[i] = float(p_list[i])
+
+        sampling_x, sampling_p = ps.sampling_distribution(x_list, p_list)
+
+        data = {'X': sampling_x, 'P': sampling_p}
+        table = pd.DataFrame(data)
+        print("\n" + table)
+        # TODO mean, variation, standard_deviation, mode, median
+
     else:
-        print("Comando invalido!")
+        print("\n Comando invalido!")

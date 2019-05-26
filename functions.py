@@ -22,7 +22,7 @@ def poisson_distribution(x, p):
     return pow(math.e, -p) * pow(p, x) / math.factorial(x)
 
 
-def hypergeometric_distribution(x: float, n: float, N: float, N1: float):
+def hypergeometric_distribution(x, n, N, N1):
     N2 = float(N - N1)
     return (combination(N1, x) * combination(N2, float(n - x))) / combination(N, n)
 
@@ -58,3 +58,15 @@ def normal_distribution_area(z):
 def student_distribution_area(v, t):
     area, _ = quad(normal_probability_density, 0, t)
     return area
+
+
+def sampling_distribution(x_list, p_list):
+    new_x_list = []
+    new_p_list = []
+
+    for p1, x1 in zip(p_list, x_list):
+        for p2, x2 in zip(p_list, x_list):
+            new_x_list.append((x1 + x2)/2)
+            new_p_list.append(p1*p2)
+
+    return new_x_list, new_p_list

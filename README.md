@@ -22,6 +22,8 @@ Some statistics and probability functions
  
  - Standardizing
  - Normal Distribution Area
+ 
+ - Sampling Distribution
 
 
 --------------------------------------------------
