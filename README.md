@@ -1,6 +1,6 @@
-# Statistics and Probability
+# Probability and Statistics
 
-Some statistics and probability functions
+Some probability and statistics functions
 
 
 --------------------------------------------------
@@ -33,13 +33,13 @@ Some statistics and probability functions
 - Clone the repository
 
 ```
-git clone https://github.com/mbampi/statistics-and-probability.git
+git clone https://github.com/mbampi/probability-and-statistics.git
 ```
 
 - Change directory
 
 ```
-cd statistics-and-probability
+cd probability-and-statistics
 ```
 
 - Execute code
