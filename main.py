@@ -6,7 +6,7 @@ import pandas as pd
 
 while True:
     print("\n --- Statistics and Probability --- \n")
-    print(" 1- Media, Mediana, Moda e Desvio Padrao \n"
+    print(" 1- Media, Mediana, Moda, Variacao e Desvio Padrao \n"
           " 2- Permutacao \n"
           " 3- Permutacao Circular \n"
           " 4- Combinacao \n"
@@ -15,7 +15,7 @@ while True:
           " 7- Distribuicao Hipergeometrica \n"
           " 8- Padronizar (x->z) \n"
           " 9- Area da Distribuicao Normal (0,z) \n"
-          " 10- Distribuicao Amostral \n"
+          " 10- Distribuicao Amostral (Media, Variacao e Desvio Padrao) \n"
           " 0- Sair \n")
     op = int(input(" -> "))
 
@@ -23,20 +23,21 @@ while True:
         break
 
     elif op == 1:
-        print("Media, Mediana, Moda e Desvio Padrao")
+        print("Media, Mediana, Moda, Variacao e Desvio Padrao")
         s = input("Numeros [divididos por ',' (virgula)] = ")
-        numbers = s.split(',')
-        for index, item in enumerate(numbers):
-            numbers[index] = float(item)
+        x_list = s.split(',')
+        for index, item in enumerate(x_list):
+            x_list[index] = float(item)
 
-        mean = statistics.mean(numbers)
-        mode = statistics.mode(numbers)
-        median = statistics.median(numbers)
-        std_deviation = statistics.stdev(numbers)
+        mean = ps.mean(x_list)
+        mode = statistics.mode(x_list)
+        median = ps.median(x_list)
+        var = ps.variation(x_list)
+        std_deviation = ps.standard_deviation(x_list)
 
-        numbers.sort()
-        range = (numbers[0]-1, numbers[len(numbers)-1]+1)
-        plt.hist(numbers, color='blue', range=range, histtype='bar', rwidth=0.8)
+        x_list.sort()
+        x_range = (x_list[0] - 1, x_list[len(x_list) - 1] + 1)
+        plt.hist(x_list, color='blue', range=x_range, histtype='bar', rwidth=0.8)
         plt.xlabel("Dados")
         plt.ylabel("No. de ocorrencias")
         plt.show()
@@ -44,6 +45,7 @@ while True:
         print("Media = " + str(mean))
         print("Mediana = " + str(median))
         print("Moda = " + str(mode))
+        print("Variacao= " + str(var))
         print("Desvio Padrao= " + str(std_deviation))
 
     elif op == 2:
@@ -135,12 +137,17 @@ while True:
             x_list[i] = float(x)
             p_list[i] = float(p_list[i])
 
-        sampling_x, sampling_p = ps.sampling_distribution(x_list, p_list)
+        sampling_x, sampling_x_means, sampling_p = ps.sampling_distribution(x_list, p_list)
+        mean = ps.mean(sampling_x_means, sampling_p)/2
+        var = ps.variation(sampling_x_means, sampling_p)
+        std = ps.standard_deviation(sampling_x_means, sampling_p)
 
-        data = {'X': sampling_x, 'P': sampling_p}
+        data = {'X': sampling_x, 'X Media': sampling_x_means, 'P': sampling_p}
         table = pd.DataFrame(data)
         print("\n" + table)
-        # TODO mean, variation, standard_deviation, mode, median
+        print("Media= " + mean)
+        print("Variacao= " + var)
+        print("Desvio Padrao= " + std)
 
     else:
         print("\n Comando invalido!")

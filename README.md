@@ -10,6 +10,7 @@ Some probability and statistics functions
  - Mean
  - Median
  - Mode
+ - Variation
  - Standard Deviation
  
  - Permutation
@@ -23,7 +24,7 @@ Some probability and statistics functions
  - Standardizing
  - Normal Distribution Area
  
- - Sampling Distribution
+ - Sampling Distribution (Mean, Variation, Standard Deviation)
 
 
 --------------------------------------------------

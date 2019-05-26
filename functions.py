@@ -1,5 +1,53 @@
 import math
 from scipy.integrate import quad
+import functions as ps
+
+
+def mean(x_list, p_list=None):
+    total_sum = 0
+    if p_list is None:
+        for x in x_list:
+            total_sum += x
+        mean = total_sum / len(x_list)
+
+    else:
+        mean = 0
+        for x, p in zip(x_list, p_list):
+            mean += x*p
+
+    return mean
+
+
+def median(x_list):
+    list_size = len(x_list)
+    x_list.sort()
+    if list_size % 2 == 0:
+        median = (x_list[list_size/2] + x_list[(list_size/2)-1])/2
+    else:
+        median = x_list[(list_size-1)/2]
+
+    return median
+
+
+def variation(x_list, p_list=None):
+    list_size = len(x_list)
+    mean = ps.mean(x_list, p_list)
+    total = 0
+    if p_list is None:
+        for x in x_list:
+            total += (x - mean) ** 2
+        var = total / list_size
+
+    else:
+        for i, x in enumerate(x_list):
+            total += (x ** 2) * p_list[i]
+        var = (total / list_size) - (mean ** 2)
+
+    return var
+
+
+def standard_deviation(x_list, p_list=None):
+    return math.sqrt(variation(x_list, p_list))
 
 
 def permutation(n, p):
@@ -62,11 +110,13 @@ def student_distribution_area(v, t):
 
 def sampling_distribution(x_list, p_list):
     new_x_list = []
+    new_x_mean_list = []
     new_p_list = []
 
     for p1, x1 in zip(p_list, x_list):
         for p2, x2 in zip(p_list, x_list):
-            new_x_list.append((x1 + x2)/2)
-            new_p_list.append(p1*p2)
+            new_x_list.append(str(x1 + ", " + x2))
+            new_x_mean_list.append(float((x1 + x2)/2))
+            new_p_list.append(float(p1*p2))
 
-    return new_x_list, new_p_list
+    return new_x_list, new_x_mean_list, new_p_list
