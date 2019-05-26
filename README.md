@@ -2,7 +2,10 @@
 
 Some statistics and probability functions
 
-Included:
+
+--------------------------------------------------
+
+### Functions Included:
 
  - Mean
  - Median
@@ -12,10 +15,33 @@ Included:
  - Permutation
  - Circular Permutation
  - Combination
-
  
  - Binomial Distribution
  - Poisson Distribution
  - Hypergeometric Distribution
  
+ - Standardizing
  - Normal Distribution Area
+
+
+--------------------------------------------------
+
+### Usage
+
+- Clone the repository
+
+```
+git clone https://github.com/mbampi/statistics-and-probability.git
+```
+
+- Change directory
+
+```
+cd statistics-and-probability
+```
+
+- Execute code
+
+```
+python main.py
+```
