@@ -1,3 +1,4 @@
+
 import math
 from scipy.integrate import quad
 import functions as ps
@@ -18,13 +19,25 @@ def mean(x_list, p_list=None):
     return mean
 
 
+def mode(x_list):
+    rep_dict = {i: 0 for i in x_list}
+    print(rep_dict)
+
+    for x in x_list:
+        rep_dict[x] += 1
+
+    # TODO if there`s no mode return None
+    return max(rep_dict, key=rep_dict.get)
+
+
 def median(x_list):
     list_size = len(x_list)
     x_list.sort()
+    print(list_size)
     if list_size % 2 == 0:
         median = (x_list[list_size/2] + x_list[(list_size/2)-1])/2
     else:
-        median = x_list[(list_size-1)/2]
+        median = x_list[int((list_size-1)/2)]
 
     return median
 
@@ -36,7 +49,7 @@ def variation(x_list, p_list=None):
     if p_list is None:
         for x in x_list:
             total += (x - mean) ** 2
-        var = total / list_size
+        var = total / (list_size-1)
 
     else:
         for i, x in enumerate(x_list):

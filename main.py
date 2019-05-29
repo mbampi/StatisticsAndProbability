@@ -1,5 +1,4 @@
 
-import statistics
 import matplotlib.pyplot as plt
 import functions as ps
 import pandas as pd
@@ -29,8 +28,10 @@ while True:
         for index, item in enumerate(x_list):
             x_list[index] = float(item)
 
+        print(x_list)
+
         mean = ps.mean(x_list)
-        mode = statistics.mode(x_list)
+        mode = ps.mode(x_list)
         median = ps.median(x_list)
         var = ps.variation(x_list)
         std_deviation = ps.standard_deviation(x_list)
@@ -42,11 +43,11 @@ while True:
         plt.ylabel("No. de ocorrencias")
         plt.show()
 
-        print("Media = " + str(mean))
+        print("Media = " + str(round(mean, 4)))
         print("Mediana = " + str(median))
         print("Moda = " + str(mode))
-        print("Variacao= " + str(var))
-        print("Desvio Padrao= " + str(std_deviation))
+        print("Variacao= " + str(round(var, 4)))
+        print("Desvio Padrao= " + str(round(std_deviation, 4)))
 
     elif op == 2:
         print("Permutacao - P(n, p)")
@@ -145,9 +146,9 @@ while True:
         data = {'X': sampling_x, 'X Media': sampling_x_means, 'P': sampling_p}
         table = pd.DataFrame(data)
         print("\n" + table)
-        print("Media= " + mean)
-        print("Variacao= " + var)
-        print("Desvio Padrao= " + std)
+        print("Media= " + round(mean, 4))
+        print("Variacao= " + round(var, 4))
+        print("Desvio Padrao= " + round(std, 4))
 
     else:
         print("\n Comando invalido!")
