@@ -9,25 +9,26 @@ def mean(x_list, p_list=None):
     if p_list is None:
         for x in x_list:
             total_sum += x
-        mean = total_sum / len(x_list)
+        result = total_sum / len(x_list)
 
     else:
-        mean = 0
+        result = 0
         for x, p in zip(x_list, p_list):
-            mean += x*p
+            result += x*p
 
-    return mean
+    return result
 
 
 def mode(x_list):
     rep_dict = {i: 0 for i in x_list}
-    print(rep_dict)
 
     for x in x_list:
         rep_dict[x] += 1
 
-    # TODO if there`s no mode return None
-    return max(rep_dict, key=rep_dict.get)
+    if all(value == 1 for value in rep_dict.values()):
+        return None
+    else:
+        return max(rep_dict, key=rep_dict.get)
 
 
 def median(x_list):
@@ -35,28 +36,28 @@ def median(x_list):
     x_list.sort()
     print(list_size)
     if list_size % 2 == 0:
-        median = (x_list[list_size/2] + x_list[(list_size/2)-1])/2
+        result = (x_list[int(list_size/2)] + x_list[int((list_size/2)-1)])/2
     else:
-        median = x_list[int((list_size-1)/2)]
+        result = x_list[int((list_size-1)/2)]
 
-    return median
+    return result
 
 
 def variation(x_list, p_list=None):
     list_size = len(x_list)
-    mean = ps.mean(x_list, p_list)
+    m = ps.mean(x_list, p_list)
     total = 0
     if p_list is None:
         for x in x_list:
-            total += (x - mean) ** 2
-        var = total / (list_size-1)
+            total += (x - m) ** 2
+        result = total / (list_size-1)
 
     else:
         for i, x in enumerate(x_list):
             total += (x ** 2) * p_list[i]
-        var = (total / list_size) - (mean ** 2)
+        result = (total / list_size) - (m ** 2)
 
-    return var
+    return result
 
 
 def standard_deviation(x_list, p_list=None):
