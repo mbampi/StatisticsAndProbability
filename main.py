@@ -1,4 +1,4 @@
-
+import scipy.stats as sc
 import matplotlib.pyplot as plt
 import functions as ps
 import pandas as pd
@@ -14,7 +14,11 @@ while True:
           " 7- Distribuicao Hipergeometrica \n"
           " 8- Padronizar (x->z) \n"
           " 9- Area da Distribuicao Normal (0,z) \n"
-          " 10- Distribuicao Amostral (Media, Variacao e Desvio Padrao) \n"
+          " 10- z a partir da Area da Distribuicao Normal (%->z)\n"
+          " 11- Area da Distribuicao t de Student (limites bilaterais) \n"
+          " 12- Distribuicao Amostral (Media, Variacao e Desvio Padrao) \n"
+          " 13- Intervalo de Confianca para Media (z) \n"
+          " 14- Intervalo de Confianca para Media (t) \n"
           " 0- Sair \n")
     op = int(input(" -> "))
 
@@ -29,12 +33,21 @@ while True:
             x_list[index] = float(item)
 
         print(x_list)
-
+        smallest = min(x_list)
+        biggest = max(x_list)
         mean = ps.mean(x_list)
         mode = ps.mode(x_list)
         median = ps.median(x_list)
         var = ps.variation(x_list)
         std_deviation = ps.standard_deviation(x_list)
+
+        print("Maior = " + str(biggest))
+        print("Menor = " + str(smallest))
+        print("Media = " + str(round(mean, 4)))
+        print("Mediana = " + str(median))
+        print("Moda = " + str(mode))
+        print("Variacao= " + str(round(var, 4)))
+        print("Desvio Padrao= " + str(round(std_deviation, 4)))
 
         x_list.sort()
         x_range = (x_list[0] - 1, x_list[len(x_list) - 1] + 1)
@@ -42,12 +55,6 @@ while True:
         plt.xlabel("Dados")
         plt.ylabel("No. de ocorrencias")
         plt.show()
-
-        print("Media = " + str(round(mean, 4)))
-        print("Mediana = " + str(median))
-        print("Moda = " + str(mode))
-        print("Variacao= " + str(round(var, 4)))
-        print("Desvio Padrao= " + str(round(std_deviation, 4)))
 
     elif op == 2:
         print("Permutacao - P(n, p)")
@@ -71,7 +78,7 @@ while True:
     elif op == 4:
         print("Combinacao - C(n, p)")
 
-        m = float(input("n (total) = "))
+        n = float(input("n (total) = "))
         p = float(input("p (selecionados) = "))
 
         result = ps.combination(n, p)
@@ -122,13 +129,28 @@ while True:
         print("z=" + str(z))
 
     elif op == 9:
-        print("Normal Distribution Area - Table")
+        print("Area da Distribuicao Normal (tabela)")
 
         z = float(input("z = "))
         area = round(ps.normal_distribution_area(z), 5)
         print("Area(0, z)=" + str(area))
 
     elif op == 10:
+        print("Z a partir da Area da Distribuicao Normal (tabela)")
+
+        area = float(input("area = "))
+        z = round(ps.z_from_area(area), 2)
+        print("Z = " + str(z))
+
+    elif op == 11:
+        print("Limites da distribuicao t de Student - (limites bilaterais)")
+
+        alpha = float(input("alpha = "))
+        v = float(input("v = "))
+        area = ps.student_distribution_area(alpha/2, v)
+        print("Area= " + str(round(area, 3)))
+
+    elif op == 12:
         print("\n Distribuicao Amostral")
         x_raw = input("X [divididos por ',' (virgula)] = ")
         p_raw = input("P [divididos por ',' (virgula)] = ")
@@ -150,5 +172,34 @@ while True:
         print("Variacao= " + round(var, 4))
         print("Desvio Padrao= " + round(std, 4))
 
+    elif op == 13:
+        print("Intervalo de Confianca para Media (z)")
+
+        n = float(input("tamanho da amostra = "))
+        mean = float(input("media = "))
+        std = float(input("desvio padrao = "))
+        confidence = float(input("nivel de confianca % = "))
+        confidence = confidence / 100
+        result = ps.mean_confidence_interval_z(n, std, confidence)
+
+        print("Intervalo de Confianca= " + mean + "+-" + str(round(result, 4)))
+
+    elif op == 14:
+        print("Intervalo de Confianca para Media (t)")
+
+        n = float(input("tamanho da amostra = "))
+        mean = float(input("media = "))
+        s = float(input("desvio padrao = "))
+        confidence = float(input("nivel de confianca % = "))
+        confidence = confidence/100
+        result = ps.mean_confidence_interval_t(n, s, confidence)
+
+        print("Intervalo de Confianca= " + mean + "+-" + str(round(result, 4)))
+
     else:
         print("\n Comando invalido!")
+
+        x = float(input("x = "))
+        print("ppf= " + str(sc.norm.ppf(x)))
+        print("cdf= " + str(sc.norm.cdf(x)))
+

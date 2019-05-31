@@ -1,5 +1,7 @@
 
 import math
+from scipy.special import stdtrit
+from scipy.stats import norm
 from scipy.integrate import quad
 import functions as ps
 
@@ -93,17 +95,17 @@ def standardizing(x, mean, std):
     return (x-mean)/std
 
 
-def mean_confidence_interval(sample_mean, sample_size, confidence_level, v=None, standard_deviation=None):
-    if sample_size > 30 or standard_deviation is not None:
-        z = normal_distribution_area(confidence_level/2)
-        confidence_variation = z * standard_deviation / math.sqrt(sample_size)
-        return sample_mean, confidence_variation
+def mean_confidence_interval_z(sample_size, std, confidence_level):
+    z = z_from_area(confidence_level/2)
+    confidence_variation = z * std / math.sqrt(sample_size)
+    return confidence_variation
 
-    # TODO
-    elif sample_size <= 30 and standard_deviation is None:
-        t = student_distribution_area(v, confidence_level/2)
-        confidence_variation = t * standard_deviation / math.sqrt(sample_size)
-        return sample_mean, confidence_variation
+
+def mean_confidence_interval_t(sample_size, s, confidence_level):
+    v = sample_size-1
+    t = student_distribution_area(v, confidence_level/2)
+    result = t * s / math.sqrt(sample_size)
+    return result
 
 
 def normal_probability_density(x):
@@ -116,10 +118,12 @@ def normal_distribution_area(z):
     return area
 
 
-# TODO
-def student_distribution_area(v, t):
-    area, _ = quad(normal_probability_density, 0, t)
-    return area
+def z_from_area(area):
+    return norm.cdf(area)
+
+
+def student_distribution_area(alpha, v):
+    return -stdtrit(v, alpha)
 
 
 def sampling_distribution(x_list, p_list):

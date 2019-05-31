@@ -22,10 +22,13 @@ Some probability and statistics functions
  - Hypergeometric Distribution
  
  - Standardizing
- - Normal Distribution Area
+ - Normal Distribution Area (z-score to %)
+ - z-Score from Normal Distribution Area (% to z-score) (TODO)
+ - t-Student Distribution Area
  
  - Sampling Distribution (Mean, Variation, Standard Deviation)
 
+ - Mean Confidence Interval (z & t) (TODO)
 
 --------------------------------------------------
 
