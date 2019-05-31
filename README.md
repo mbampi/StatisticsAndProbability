@@ -23,7 +23,7 @@ Some probability and statistics functions
  
  - Standardizing
  - Normal Distribution Area (z-score to %)
- - z-Score from Normal Distribution Area (% to z-score) (TODO)
+ - z-Score from Normal Distribution Area (% to z-score)
  - t-Student Distribution Area
  
  - Sampling Distribution (Mean, Variation, Standard Deviation)

@@ -199,7 +199,3 @@ while True:
     else:
         print("\n Comando invalido!")
 
-        x = float(input("x = "))
-        print("ppf= " + str(sc.norm.ppf(x)))
-        print("cdf= " + str(sc.norm.cdf(x)))
-

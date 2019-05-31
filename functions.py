@@ -1,7 +1,7 @@
 
 import math
 from scipy.special import stdtrit
-from scipy.stats import norm
+import scipy.stats as st
 from scipy.integrate import quad
 import functions as ps
 
@@ -116,10 +116,11 @@ def normal_probability_density(x):
 def normal_distribution_area(z):
     area, _ = quad(normal_probability_density, 0, z)
     return area
+    # print("z->% cdf= " + str(st.norm.cdf(x) - st.norm.cdf(0)))
 
 
 def z_from_area(area):
-    return norm.cdf(area)
+    return st.norm.ppf(-(1-area*2)/2)
 
 
 def student_distribution_area(alpha, v):
