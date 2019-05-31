@@ -28,7 +28,7 @@ Some probability and statistics functions
  
  - Sampling Distribution (Mean, Variation, Standard Deviation)
 
- - Mean Confidence Interval (z & t) (TODO)
+ - Mean Confidence Interval (z)
 
 --------------------------------------------------
 

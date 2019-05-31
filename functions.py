@@ -97,6 +97,7 @@ def standardizing(x, mean, std):
 
 def mean_confidence_interval_z(sample_size, std, confidence_level):
     z = z_from_area(confidence_level/2)
+    print("z= "+str(confidence_level/2) + " _ " + str(z))
     confidence_variation = z * std / math.sqrt(sample_size)
     return confidence_variation
 
@@ -120,7 +121,7 @@ def normal_distribution_area(z):
 
 
 def z_from_area(area):
-    return st.norm.ppf(-(1-area*2)/2)
+    return -st.norm.ppf((1 - area*2) / 2)
 
 
 def student_distribution_area(alpha, v):

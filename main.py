@@ -1,7 +1,7 @@
-import scipy.stats as sc
 import matplotlib.pyplot as plt
 import functions as ps
 import pandas as pd
+import scipy.stats as st
 
 while True:
     print("\n --- Statistics and Probability --- \n")
@@ -140,6 +140,7 @@ while True:
 
         area = float(input("area = "))
         z = round(ps.z_from_area(area), 2)
+
         print("Z = " + str(z))
 
     elif op == 11:
@@ -182,7 +183,7 @@ while True:
         confidence = confidence / 100
         result = ps.mean_confidence_interval_z(n, std, confidence)
 
-        print("Intervalo de Confianca= " + mean + "+-" + str(round(result, 4)))
+        print("Intervalo de Confianca= " + str(mean) + " +- " + str(round(result, 4)))
 
     elif op == 14:
         print("Intervalo de Confianca para Media (t)")
