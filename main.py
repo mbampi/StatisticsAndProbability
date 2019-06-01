@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import functions as ps
 import pandas as pd
-import scipy.stats as st
+
 
 while True:
     print("\n --- Statistics and Probability --- \n")
@@ -18,7 +18,7 @@ while True:
           " 11- Area da Distribuicao t de Student (limites bilaterais) \n"
           " 12- Distribuicao Amostral (Media, Variacao e Desvio Padrao) \n"
           " 13- Intervalo de Confianca para Media (z) \n"
-          " 14- Intervalo de Confianca para Media (t) \n"
+          " 14- Intervalo de Confianca para Media (t) (TODO) \n"
           " 0- Sair \n")
     op = int(input(" -> "))
 
