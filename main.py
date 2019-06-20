@@ -197,6 +197,7 @@ while True:
 
         print("Intervalo de Confianca= " + mean + "+-" + str(round(result, 4)))
 
+
     else:
         print("\n Comando invalido!")
 
